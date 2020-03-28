@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="login-box">
+
     </div>
   </div>
 </template>
