@@ -1,26 +1,28 @@
-body {
+html {
   &, h1, h2, h3, h4, h5, h6 {
     margin: 0; padding: 0;
   }
 
   // 滚动条样式
   ::-webkit-scrollbar {
+    position: fixed;
+    z-index: 1000;
     // 高宽分别对应横竖滚动条的尺寸 
     width: 10px; height: 10px;
   }
   ::-webkit-scrollbar-thumb {
     // 滚动条里面小方块
     border-radius: 10px;
-    background-color: skyblue;
+    background-color: #1890ff;
     background-image: linear-gradient(
       45deg,
+      rgba(255, 255, 255, 0.6) 0%,
       rgba(255, 255, 255, 0.4) 25%,
-      transparent 25%,
-      transparent 50%,
       rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.6) 75%,
       rgba(255, 255, 255, 0.4) 75%,
-      transparent 75%,
-      transparent
+      rgba(255, 255, 255, 0.4) 100%
     );
   }
   ::-webkit-scrollbar-track {

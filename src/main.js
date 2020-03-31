@@ -9,6 +9,10 @@ import '@a/style/base.less'
 // 引入组件
 import './ui'
 
+// 引入api
+import api from '@/api'
+Vue.prototype.$_api = api
+
 Vue.config.productionTip = false
 
 new Vue({
