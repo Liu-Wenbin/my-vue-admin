@@ -31,6 +31,8 @@ export class Tool {
           arr.forEach(item => {
             val = val[item]
           })
+        } else {
+          val = val[filterKey]
         }
 
         if (val === filterVal) {
