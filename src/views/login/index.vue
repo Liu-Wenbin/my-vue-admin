@@ -43,9 +43,9 @@
 
             <div class="login-commit">
               <i-button
-                type="primary"
                 :loading="isLoginCommitBtnLoading"
                 @click="clickLoginButton"
+                type="primary"
                 class="login-commit-button"
               >立即登录</i-button>
             </div>

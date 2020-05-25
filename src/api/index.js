@@ -1,5 +1,7 @@
+import common from './module/common'
 import login from './module/login'
 
 export default {
-	login,
+	common, // 公共接口
+	login, // 登录
 }

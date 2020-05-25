@@ -1,18 +1,17 @@
 <template>
-  <div class="test">
-    <h2>test</h2>
+  <div class="love-game">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'test'
+    name: 'love-game',
   }
 </script>
 
 <style lang="less" scoped>
-  .test {
-
+  .love-game {
+    
   }
 </style>

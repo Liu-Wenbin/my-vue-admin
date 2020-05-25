@@ -1,6 +1,6 @@
 const $_netConfig = {
   devRequestURL: { // 开发环境
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'http://127.0.0.1:3001',
     module: 'admin'
   },
   proRequestURL: { // 生产环境

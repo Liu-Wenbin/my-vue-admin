@@ -1,18 +1,18 @@
 import routes from '@/router/route'
 import { Tool } from '@u'
 
+const routeList = Tool.filterFirstTreeNode(routes, item => item.meta.isRootRoute).children
+
 export default {
   namespaced: true,
 
   state: {
     // 路由列表
-    routeList: Tool.filterFirstTreeNode(routes, 'meta.isRootRoute', true, 'children').children,
+    routeList: routeList,
   },
 
   getters: {
-    /**
-     * 获取默认展示的路由，此处为第二层路由的第一个
-     */
+    // 获取默认展示的路由，此处为第二层路由的第一个
     defaultRoute (state) {
       return state.routeList[0].children[0]
     },
