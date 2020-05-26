@@ -19,7 +19,9 @@ export default {
 
   mutations: {
     /**
-     * 更新登录信息，如果退出登录，不传payload即可
+     * 更新登录信息
+     * 如果退出登录
+     * 不传payload即可
      */
     setLoginInfo (state, info = { username: '', token: '' }) {
       state.username = info.username

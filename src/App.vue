@@ -5,20 +5,65 @@
 </template>
 
 <script>
+  import { Tool } from '@u'
+  import MyRoute from '@s/route'
+  
   export default {
     name: 'app',
     data () {
       return {
-
+        // 路由列表，供监听使用
+        routeList: []
       }
     },
+    computed: {
+      // 是否登录
+      isLogin () {
+        return this.$store.getters['login/isLogin']
+      },
+    },
     created () {
-      // 如果全局配置路由使用权限的话
-      if ($_funcConfig.authority.useRouteAuthority) {
-        this.reqGetRouteList()
+      this.initRouteList()
+    },
+    watch: {
+      /**
+       * 当用户登录之后，去初始化路由列表
+       * 当用户登出之后并且使用权限路由，清空路由列表
+       */
+      isLogin (val) {
+        if (val) {
+          this.initRouteList()
+        } else if ($_funcConfig.authority.useRouteAuthority) {
+          this.routeList = []
+        }
+      },
+      routeList (val, old) {
+        const routeList = this.routeList
+        const mixins = {
+          isMenu: true,
+        }
+
+        this.$router.addRoutes(new MyRoute(routeList, mixins))
+
+        this.$store.commit('route/setRouteList', routeList)
       }
     },
     methods: {
+      /**
+       * 初始化路由列表
+       * 该路由列表用于页面渲染
+       */
+      initRouteList () {
+        // created钩子已经调用但用户尚未登录
+        if (!this.isLogin) {
+          return
+        }
+
+        // 如果全局配置路由使用权限
+        if ($_funcConfig.authority.useRouteAuthority) {
+          this.reqGetRouteList()
+        }
+      },
       /**
        * 接口 获取路由列表
        */
@@ -51,8 +96,9 @@
           },
         ]
 
-        // 将获取到的路由列表放到store中供页面渲染
-        this.$store.commit('route/setRouteList', routeList)
+        setTimeout(() => {
+          this.routeList = routeList
+        }, 0)
 
         // const params = {
 

@@ -22,9 +22,10 @@
 
         <!-- 二级路由 -->
         <a-menu-item
+          v-if="menu.meta.isMenu"
           v-for="menu in subMenu.children"
           :key="menu.name"
-          @click="clickPageRoute(menu)"
+          @click="onClickPageRoute(menu)"
         >{{ menu.meta.title }}</a-menu-item>
       </a-sub-menu>
     </a-menu>
@@ -36,6 +37,8 @@
 </template>
 
 <script>
+  import { Tool } from '@u'
+  
   export default {
     name: 'my-admin',
     data () {
@@ -49,7 +52,12 @@
     computed: {
       // 路由列表
       routeList () {
+        console.log(this.$store.state.route.routeList)
         return this.$store.state.route.routeList
+      },
+      // 默认路由
+      defaultRoute () {
+        return this.$store.getters['route/defaultRoute']
       },
     },
     created () {
@@ -59,8 +67,24 @@
       /**
        * 路由发生变化时重新设置展开菜单列表及选中项
        */
-      $route () {
+      $route (to) {
         this.setOpenMenuListAndSelected()
+      },
+      /**
+       * 用于接口请求完成后路由列表发生变化
+       */
+      routeList () {
+        this.setOpenMenuListAndSelected()
+      },
+      /**
+       * 路由跳转到选中的菜单
+       */
+      selectedMenuItem (val) {
+        if (val.length) {
+          this.$router.push({
+            name: val[0]
+          })
+        }
       },
     },
     methods: {
@@ -68,18 +92,35 @@
        * 根据路由设置展开菜单列表及选中项
        */
       setOpenMenuListAndSelected () {
-        const route = this.$route
+        // 尚未请求到路由列表
+        if (!this.routeList.length) {
+          return
+        }
+        
+        let route
+
+        if (this.$route.name === 'root') {
+          route = this.defaultRoute
+        } else {
+          route = this.$route
+        }
 
         const shouldSelectedMenuItem = route.name
-        const shouldOpenMenu = route.meta.$parentRoute.name
+        let shouldOpenMenuList
+
+        if (shouldSelectedMenuItem === 'root') {
+          shouldOpenMenuList = []
+        } else {
+          shouldOpenMenuList = [route.meta.$parentRoute.name]
+        }
 
         this.selectedMenuItem = [shouldSelectedMenuItem]
-        this.openMenuList = [shouldOpenMenu]
+        this.openMenuList = shouldOpenMenuList
       },
       /**
        * 点击页面级路由
        */
-      clickPageRoute (menu) {
+      onClickPageRoute (menu) {
         this.$router.push({
           name: menu.name
         })
