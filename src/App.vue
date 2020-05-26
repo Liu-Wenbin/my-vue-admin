@@ -98,7 +98,7 @@
 
         setTimeout(() => {
           this.routeList = routeList
-        }, 0)
+        }, 2000)
 
         // const params = {
 

@@ -101,6 +101,14 @@
 
         if (this.$route.name === 'root') {
           route = this.defaultRoute
+        } else if (!this.$route.meta.$parentRoute) {
+          const children = this.$route.meta.$children
+          
+          if (children.length) {
+            route = children[0]
+          } else {
+            route = this.defaultRoute
+          }
         } else {
           route = this.$route
         }

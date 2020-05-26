@@ -15,6 +15,8 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const isLogin = store.getters['login/isLogin'] // 是否已登录
   const isToLogin = to.name === 'login' // 是否去往登录页
+  // 是否应该在路由不存在时跳到404页面，可能出现异步获取路由尚未获取到的情况
+  const shouldGo404 = !($_funcConfig.authority.useRouteAuthority && !store.state.route.routeList.length)
   const isToAbsentRoute =  // 去往的路由是否不存在
     !Tool.filterFirstTreeNode(
       store.state.route.routeList,
@@ -48,7 +50,7 @@ router.beforeEach((to, from, next) => {
       })
     }
 
-    if (isToAbsentRoute) {
+    if (isToAbsentRoute && shouldGo404) {
       return next({
         name: 'not-found'
       })

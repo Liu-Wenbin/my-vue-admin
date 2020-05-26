@@ -15,7 +15,9 @@ export default class Route {
     routeList.forEach(parentRoute => {
       // 混入自定义配置项
       const cached = parentRoute.meta || {}
-      parentRoute.meta = Object.assign({}, mixins, cached)
+      parentRoute.meta = Object.assign({}, mixins, cached, {
+        $children: parentRoute.children || []
+      })
 
       if (parentRoute.children) {
         parentRoute.children.forEach(childRoute => {
