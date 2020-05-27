@@ -4,13 +4,13 @@
     <div class="error-desc">啊哦~ 您所访问的页面走丢了</div>
     <div class="error-handle">
       <a-button
-        @click="clickToHomeButton"
+        @click="onClickToHomeButton"
         type="primary"
         size="large"
         class="btn"
       >返回首页</a-button>
       <a-button
-        @click="clickGoBackButton"
+        @click="onClickGoBackButton"
         type="primary"
         size="large"
         class="btn"
@@ -25,14 +25,14 @@
       /**
        * 点击 返回首页 按钮
        */
-      clickToHomeButton () {
+      onClickToHomeButton () {
         this.$router.replace(this.$store.getters['route/defaultRoute'])
       },
       /**
        * 点击 返回上一页 按钮
        */
-      clickGoBackButton () {
-        this.$router.back()
+      onClickGoBackButton () {
+        this.$router.go(-2)
       },
     },
   }

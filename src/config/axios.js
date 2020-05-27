@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import store from '@/store'
 
 class AxiosRequest {
   baseURL
@@ -22,7 +23,7 @@ class AxiosRequest {
     const config = {
       baseURL: this.baseURL,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     }
 
@@ -39,6 +40,8 @@ class AxiosRequest {
   initiInterceptors () {
     // 请求拦截
     const reqFn = config => {
+      config.headers.Authorization = store.state.login.token
+      
       return config
     }
     const reqErrorFn = err => {
@@ -47,8 +50,8 @@ class AxiosRequest {
     this.instance.interceptors.request.use(reqFn, reqErrorFn)
 
     // 响应拦截
-    const resFn = res => {
-      return res
+    const resFn = ({ data, status }) => {
+      return data
     }
     const resErrorFn = err => {
       Vue.prototype.$message.warning('服务器开了小差，过会儿再来试试吧~')

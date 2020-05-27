@@ -5,8 +5,8 @@ export default {
   // 根据权限获取路由列表
   getRouteList (data) {
     return axios.request({
-      url: 'route/getList',
-      method: 'post',
+      url: 'route',
+      method: 'get',
       data
     })
   },

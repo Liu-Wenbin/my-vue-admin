@@ -7,11 +7,16 @@
 <script>
   import { Tool } from '@u'
   import MyRoute from '@s/route'
+  import { routerCreator } from '@/router'
   
   export default {
     name: 'app',
     data () {
       return {
+        // 是否开启权限路由
+        useRouteAuthority: $_funcConfig.authority.useRouteAuthority,
+        // 是否在刷新之后返回首页
+        goHomeAfterRefresh: $_funcConfig.operate.goHomeAfterRefresh,
         // 路由列表，供监听使用
         routeList: []
       }
@@ -33,8 +38,14 @@
       isLogin (val) {
         if (val) {
           this.initRouteList()
-        } else if ($_funcConfig.authority.useRouteAuthority) {
-          this.routeList = []
+        } else {
+          if (this.useRouteAuthority) {
+            this.routeList = []
+          }
+
+          this.$router.push({
+            name: 'login'
+          })
         }
       },
       routeList (val, old) {
@@ -43,6 +54,8 @@
           isMenu: true,
         }
 
+        // 用于在用户登出之后重置addRoutes添加的路由（有效性待测试）
+        this.$router.matcher = routerCreator().matcher
         this.$router.addRoutes(new MyRoute(routeList, mixins))
 
         this.$store.commit('route/setRouteList', routeList)
@@ -69,45 +82,33 @@
        */
       reqGetRouteList () {
         // 期望接收如下格式的路由列表
-        const routeList = [
-          {
-            name: 'love-current',
-            meta: { title: '爱当下' },
-            children: [
-              {
-                name: 'current-people',
-                meta: { title: '有些人' }
-              },
-            ],
-          },
-          {
-            name: 'love-game',
-            meta: { title: '爱游戏' },
-            children: [
-              {
-                name: 'game-yys',
-                meta: { title: '阴阳师' }
-              },
-              {
-                name: 'game-guard-radish',
-                meta: { title: '保卫萝卜' }
-              },
-            ],
-          },
-        ]
+        // const routeList = [
+        //   {
+        //     name: 'love-current',
+        //     meta: { title: '爱当下' },
+        //     children: [
+        //       {
+        //         name: 'current-people',
+        //         meta: { title: '有些人' }
+        //       },
+        //     ],
+        //   },
+        // ]
 
-        setTimeout(() => {
-          this.routeList = routeList
-        }, 2000)
+        // setTimeout(() => {
+        //   this.routeList = routeList
+        // }, 2000)
 
-        // const params = {
+        const params = {
 
-        // }
+        }
 
-        // this.$_api.common.getRouteList(params)
-        //   .then(res => {
-
-        //   })
+        this.$_api.common.getRouteList(params)
+          .then(({ success, data }) => {
+            if (success) {
+              this.routeList = data
+            }
+          })
       },
     }
   }

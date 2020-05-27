@@ -6,12 +6,14 @@ import {
   message,
   Menu,
   Icon,
+  Dropdown,
 } from 'ant-design-vue'
 
 Vue
   .use(Button)
   .use(Menu)
   .use(Icon)
+  .use(Dropdown)
 
 message.config({
   maxCount: 1,

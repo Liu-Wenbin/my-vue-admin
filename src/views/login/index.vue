@@ -88,8 +88,8 @@
         }
 
         this.$_api.login.commitLogin(params)
-          .then(({ data }) => {
-            if (data && data.token) {
+          .then(({ success, data }) => {
+            if (success) {
               this.$store.commit('login/setLoginInfo', {
                 username: this.username,
                 token: data.token,

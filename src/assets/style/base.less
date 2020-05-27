@@ -3,6 +3,12 @@ html {
     margin: 0; padding: 0;
   }
 
+  // 元素全屏样式
+  :not(:root):fullscreen::backdrop {
+    background: transparent;
+  }
+
+
   // 滚动条样式
   ::-webkit-scrollbar {
     position: fixed;
