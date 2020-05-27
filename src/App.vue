@@ -73,7 +73,7 @@
         }
 
         // 如果全局配置路由使用权限
-        if ($_funcConfig.authority.useRouteAuthority) {
+        if (this.useRouteAuthority) {
           this.reqGetRouteList()
         }
       },

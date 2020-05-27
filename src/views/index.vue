@@ -53,6 +53,8 @@
       return {
         // Menu是否使用手风琴模式
         useAccordionMenu: $_funcConfig.operate.useAccordionMenu,
+        // 是否在路由刷新后返回首页
+        goHomeAfterRefresh: $_funcConfig.operate.goHomeAfterRefresh,
         // 选中的菜单项（路由）
         selectedMenuItem: [],
         // 展开菜单列表
@@ -108,18 +110,24 @@
 
         let route
 
-        if (this.$route.name === 'root') {
+        if (this.goHomeAfterRefresh) {
           route = this.defaultRoute
-        } else if (!this.$route.meta.$parentRoute) {
-          const children = this.$route.meta.$children
-
-          if (children.length) {
-            route = children[0]
-          } else {
-            route = this.defaultRoute
-          }
+          // 这里置为false是为了不让它干扰刷新过后的路由判断
+          this.goHomeAfterRefresh = false
         } else {
-          route = this.$route
+          if (this.$route.name === 'root') {
+            route = this.defaultRoute
+          } else if (!this.$route.meta.$parentRoute) {
+            const children = this.$route.meta.$children
+
+            if (children.length) {
+              route = children[0]
+            } else {
+              route = this.defaultRoute
+            }
+          } else {
+            route = this.$route
+          }
         }
 
         const shouldSelectedMenuItem = route.name
