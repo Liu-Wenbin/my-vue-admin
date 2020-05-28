@@ -1,6 +1,6 @@
 const $_funcConfig = {
   authority: { // 权限相关配置
-    useRouteAuthority: true, // 是否开启权限路由
+    useRouteAuthority: false, // 是否开启权限路由
   },
   layout: { // 布局相关配置
     showFullScreen: true, // 是否显示全屏操作图标

@@ -61,9 +61,12 @@ class AxiosRequest {
   }
 }
 
+const devUrl = $_requestConfig.devRequestURL
+const proUrl = $_requestConfig.proRequestURL
+
 const baseURL =
   process.env.NODE_ENV === 'development'
-    ? `${ $_netConfig.devRequestURL.baseURL }/${ $_netConfig.devRequestURL.module }`
-    : `${ $_netConfig.proRequestURL.baseURL }/${ $_netConfig.proRequestURL.module }`
+    ? `${ devUrl.baseURL }/${ devUrl.module }`
+    : `${ proUrl.baseURL }/${ proUrl.module }`
 
 export default new AxiosRequest(baseURL)

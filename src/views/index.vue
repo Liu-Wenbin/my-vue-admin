@@ -28,7 +28,7 @@
         >{{ menu.meta.title }}</a-menu-item>
       </a-sub-menu>
     </a-menu>
-    
+
     <div class="view-box">
       <!-- 顶部状态栏 -->
       <layout-top-bar></layout-top-bar>

@@ -1,4 +1,4 @@
-const $_netConfig = {
+const $_requestConfig = {
   devRequestURL: { // 开发环境
     baseURL: 'http://127.0.0.1:3001',
     module: 'admin'

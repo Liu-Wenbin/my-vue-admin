@@ -76,7 +76,33 @@ if (!$_funcConfig.authority.useRouteAuthority) {
           }
         },
       ],
-    }
+    },
+    {
+      path: '/love-technology',
+      name: 'love-technology',
+      component: () => import('@v'),
+      meta: {
+        title: '爱技术'
+      },
+      children: [
+        {
+          path: 'love-front-end',
+          name: 'love-front-end',
+          component: () => import('@v/love-technology/technology-front-end'),
+          meta: {
+            title: '前端'
+          }
+        },
+        {
+          path: 'love-java',
+          name: 'love-java',
+          component: () => import('@v/love-technology/technology-java'),
+          meta: {
+            title: 'Java'
+          }
+        },
+      ]
+    },
   ]
   
   // 构建路由列表混入项
