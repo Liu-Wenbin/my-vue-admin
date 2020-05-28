@@ -6,10 +6,14 @@ import store from './store'
 // 全局样式重置
 import '@a/style/base.less'
 
+// postcss-pxtorem
 import '@s/rem'
 
 // 引入组件
 import './ui'
+
+// 项目配置提示
+import '@s/configTip.js'
 
 // 引入api
 import api from '@/api'

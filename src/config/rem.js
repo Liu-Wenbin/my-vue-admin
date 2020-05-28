@@ -6,4 +6,5 @@ function setRem() {
 
 setRem()
 
-window.onresize = setRem
+// window.onresize = setRem
+window.addEventListener('resize', setRem, false)
