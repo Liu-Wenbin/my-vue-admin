@@ -1,9 +1,11 @@
 <template>
   <div class="technology-front-end">
     <upload-pic
-      :upload-api="uploadPicApi"
-      :upload-params="uploadPicParams"
+      :upload-api="uploadApi"
+      :upload-params="uploadParams"
       :max-length="2"
+      @success-upload="onSuccessUpload"
+      multiple
       class="upload-pic"
     ></upload-pic>
   </div>
@@ -19,14 +21,14 @@
     },
     data () {
       return {
-        uploadPicApi: 'http://www.baidu.com',
-        uploadPicParams: {
-          uid: Date.now() + ''
-        },
+        uploadApi: 'common.upload',
+        uploadParams: {},
       }
     },
     methods: {
-
+      onSuccessUpload (res) {
+        console.log(res)
+      }
     },
   }
 </script>

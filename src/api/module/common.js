@@ -10,4 +10,15 @@ export default {
       data
     })
   },
+
+  upload (data) {
+    return axios.request({
+      url: 'android/user/upload',
+      method: 'post',
+      data,
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
+  }
 }

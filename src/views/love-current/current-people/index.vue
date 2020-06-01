@@ -1,6 +1,6 @@
 <template>
   <div class="current-people">
-    <h1>当下一定有些人是你所爱的</h1>
+    
   </div>
 </template>
 
@@ -12,11 +12,16 @@
 
       }
     },
+    created () {
+      
+    }
   }
 </script>
 
 <style lang="less" scoped>
   .current-people {
-
+    iframe {
+      width: 100%; height: 100%;
+    }
   }
 </style>
