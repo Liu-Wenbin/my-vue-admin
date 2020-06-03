@@ -13,7 +13,10 @@ import '@s/rem'
 import './ui'
 
 // 项目配置提示
-import '@s/configTip.js'
+import '@s/configTip'
+
+// 全局混入
+import '@/mixins'
 
 // 引入api
 import api from '@/api'

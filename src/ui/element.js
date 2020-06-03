@@ -5,6 +5,8 @@ import {
   Upload,
   Icon,
   Dialog,
+  Select,
+  Option,
 } from 'element-ui'
 
 Vue
@@ -12,3 +14,5 @@ Vue
   .use(Upload)
   .use(Icon)
   .use(Dialog)
+  .use(Select)
+  .use(Option)

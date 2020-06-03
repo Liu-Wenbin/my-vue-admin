@@ -9,5 +9,6 @@ const $_funcConfig = {
     useAccordionMenu: true, // Menu菜单是否使用手风琴模式
     goHomeAfterRefresh: false, // 刷新之后是否回到首页
     showProductTip: true, // 是否开启本项目的生产环境提示
+    keepRouteAlive: true, // 是否启用缓存路由
   },
 }

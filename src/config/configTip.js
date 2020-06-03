@@ -75,6 +75,13 @@ if (
       falseMsg: '%c刷新后回首页：%c关闭',
       falseStyle: [primary, danger]
     },
+    {
+      show: !!operate.keepRouteAlive,
+      trueMsg: '%c路由缓存：%c开启',
+      trueStyle: [primary, success],
+      falseMsg: '%c路由缓存：%c关闭',
+      falseStyle: [primary, danger]
+    },
   ]
 
   console.log('%c生产提示已开启...', normal)

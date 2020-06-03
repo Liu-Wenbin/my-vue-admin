@@ -33,9 +33,18 @@
       <!-- 顶部状态栏 -->
       <layout-top-bar></layout-top-bar>
 
-      <keep-alive>
-        <router-view class="admin-view"></router-view>
-      </keep-alive>
+      <transition name="fade" mode="out-in">
+        <keep-alive v-if="keepRouteAlive">
+          <router-view
+            class="admin-view"
+          />
+        </keep-alive>
+
+        <router-view
+          v-else
+          class="admin-view"
+        />
+      </transition>
     </div>
   </div>
 </template>
@@ -51,10 +60,6 @@
     },
     data () {
       return {
-        // Menu是否使用手风琴模式
-        useAccordionMenu: $_funcConfig.operate.useAccordionMenu,
-        // 是否在路由刷新后返回首页
-        goHomeAfterRefresh: $_funcConfig.operate.goHomeAfterRefresh,
         // 选中的菜单项（路由）
         selectedMenuItem: [],
         // 展开菜单列表
@@ -194,6 +199,17 @@
         height: calc(100% - 66px);
         overflow: auto;
       }
+    }
+
+    .fade-enter-to,
+    .fade-leave {
+      opacity: 1;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      opacity: 0;
+      transform: opacity 0.3s;
     }
   }
 </style>

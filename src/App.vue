@@ -13,10 +13,6 @@
     name: 'app',
     data () {
       return {
-        // 是否开启权限路由
-        useRouteAuthority: $_funcConfig.authority.useRouteAuthority,
-        // 是否在刷新之后返回首页
-        goHomeAfterRefresh: $_funcConfig.operate.goHomeAfterRefresh,
         // 路由列表，供监听使用
         routeList: []
       }

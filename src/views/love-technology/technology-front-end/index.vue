@@ -1,28 +1,37 @@
 <template>
   <div class="technology-front-end">
-    <upload-pic
-      :upload-api="uploadApi"
-      :upload-params="uploadParams"
-      :max-length="2"
-      @success-upload="onSuccessUpload"
-      multiple
-      class="upload-pic"
-    ></upload-pic>
+    <div class="box">
+      <common-select
+        :options="selectList"
+        :props="selectProps"
+      ></common-select>
+    </div>
   </div>
 </template>
 
 <script>
-  import UploadPic from '@c/upload-pic'
+  import CommonSelect from '@c/common-select'
   
   export default {
     name: 'technology-front-end',
     components: {
-      'upload-pic': UploadPic,
+      'common-select': CommonSelect,
     },
     data () {
       return {
-        uploadApi: 'common.upload',
-        uploadParams: {},
+        selectList: [
+          { name: '小明', value: '1' },
+          { name: '小明', value: '2' },
+          { name: '小明', value: '3' },
+          { name: '小明', value: '4' },
+          { name: '小明', value: '5' },
+          { name: '小明', value: '6' },
+          { name: '小明', value: '7' },
+        ],
+        selectProps: {
+          label: 'name',
+          value: 'value'
+        }
       }
     },
     methods: {
@@ -35,6 +44,8 @@
 
 <style lang="less" scoped>
   .technology-front-end {
-
+    .box {
+      width: 50%;
+    }
   }
 </style>

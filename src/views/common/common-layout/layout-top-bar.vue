@@ -45,8 +45,6 @@
     name: 'layout-top-bar',
     data () {
       return {
-        // 是否显示全屏图标
-        showFullScreen: $_funcConfig.layout.showFullScreen,
         // 是否全屏
         isFullScreen: false,
       }
