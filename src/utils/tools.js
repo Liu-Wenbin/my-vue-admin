@@ -1,3 +1,5 @@
+import pinyin from 'pinyin2'
+
 const _toString = Object.prototype.toString
 
 export class Tool {
@@ -152,5 +154,16 @@ export class Tool {
         window.requestAnimationFrame(scrollToTop);
         window.scrollTo(0, c - c / 8);
     }
+  }
+
+  /**
+   * 转换为拼音首字母
+   */
+  static toPinyinInitials(text) {
+    return pinyin(text, {
+      style: pinyin.STYLE_NORMAL
+    }).map(item => {
+      return item[0].slice(0, 1)
+    }).join('')
   }
 }
