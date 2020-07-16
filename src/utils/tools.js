@@ -86,16 +86,6 @@ export class Tool {
   }
 
   /**
-   * 判断一个字符串中包不包含另一个字符串
-   * @param  {[type]} str     [字符串]
-   * @param  {[type]} content [包含的字符串]
-   * @return {[type]}         [包含返回true]
-   */
-  static strContains(str, content) {
-    return !!~str.indexOf(content)
-  }
-
-  /**
    * 得到一个值的原始类型
    * 比如null为Null，Symbol()为Symbol，new Date()为Date
    */
