@@ -156,4 +156,35 @@ export class Tool {
       return item[0].slice(0, 1)
     }).join('')
   }
+
+  /**
+   * 防抖函数
+   */
+  static debounce(fn, delay = 1000) {
+    let timer = null
+
+    return function () {
+      clearTimeout(timer)
+
+      timer = setTimeout(fn, delay)
+    }
+  }
+
+  /**
+   * 节流函数
+   */
+  static throttle(fn, delay = 1000) {
+    let flag = true
+
+    return function () {
+      if (flag) {
+        flag = false
+
+        setTimeout(() => {
+          fn()
+          flag = true
+        }, delay)
+      }
+    }
+  }
 }
