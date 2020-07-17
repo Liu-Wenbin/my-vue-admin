@@ -9,7 +9,6 @@ module.exports = {
   outputDir: 'dist/my-vue-admin',
   productionSourceMap: false,
   lintOnSave: false,
-  assetsDir: 'pack',
 
   devServer: {
     open: false, // 项目构建成功后是否自动打开浏览器
