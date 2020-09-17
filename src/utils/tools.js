@@ -139,10 +139,10 @@ export class Tool {
    * 返回顶部，带动画效果
    */
   static scrollToTop(el) {
-    c = el.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
+    const c = el.scrollTop
     if (c > 0) {
-      window.requestAnimationFrame(scrollToTop);
-      window.scrollTo(0, c - c / 8);
+      el.scrollTo(0, c - c / 8)
+      window.requestAnimationFrame(() => this.scrollToTop(el))
     }
   }
 
